@@ -1,0 +1,23 @@
+package:
+  name: pyodbc
+  version: 3.0.7
+
+source:
+  git_url: https://code.google.com/p/pyodbc/
+  git_tag: 3.0.7
+  patches:
+    - add_setup_config.patch
+
+requirements:
+  build:
+    - python
+  run:
+    - python
+
+test:
+  imports:
+    - pyodbc
+
+about:
+  home: https://code.google.com/p/pyodbc/
+  license: MIT

@@ -1,0 +1,28 @@
+
+diff --git setup.py setup.py
+index b92666f..f25fa94 100755
+--- setup.py
++++ setup.py
+@@ -268,11 +268,14 @@ def _get_version_git():
+         # This is a beta of the next micro release, so increment the micro number to reflect this.
+         numbers[-2] += 1
+         name = '%s.%s.%s-beta%02d' % tuple(numbers)
+-
+-    n, result = getoutput('git branch')
+-    branch = re.search(r'\* (\w+)', result).group(1)
+-    if branch != 'master' and not re.match('^v\d+$', branch):
+-        name = branch + '-' + name
++    
++    try:
++        n, result = getoutput('git branch')
++        branch = re.search(r'\* (\w+)', result).group(1)
++        if branch != 'master' and not re.match('^v\d+$', branch):
++            name = branch + '-' + name
++    except:
++        pass
+ 
+     return name, numbers
+ 
+-- 
+1.8.3.msysgit.0
+
