@@ -1,11 +1,11 @@
 package:
   name: kombu
-  version: 3.0.0
+  version: 2.5.15
 
 source:
-  fn: kombu-3.0.0.tar.gz
-  url: https://pypi.python.org/packages/source/k/kombu/kombu-3.0.0.tar.gz
-  md5: 686e19ed87824c49db90baa151eea257
+  fn: kombu-2.5.15.tar.gz
+  url: https://pypi.python.org/packages/source/k/kombu/kombu-2.5.15.tar.gz
+  md5: 429127bb9c7d9e02cab6e57675bbc9b3
 #  patches:
    # List any patch files here
    # - fix.patch
@@ -27,7 +27,6 @@ source:
 requirements:
   build:
     - python
-    - distribute
     - anyjson
     - amqp
 
