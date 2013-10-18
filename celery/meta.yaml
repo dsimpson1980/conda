@@ -1,0 +1,77 @@
+package:
+  name: celery
+  version: 3.0.24
+
+source:
+  fn: celery-3.0.24.tar.gz
+  url: https://pypi.python.org/packages/source/c/celery/celery-3.0.24.tar.gz
+  md5: e864856a849468f277031ac2c5fd65b6
+  patches:
+    # List any patch files here
+    - remove_setuptools.patch
+
+build:
+  entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - celery = celery:main
+    #
+    # Would create an entry point called celery that calls celery.main()
+
+    - celery = celery.__main__:main
+    - celeryd = celery.__main__:_compat_worker
+    - celerybeat = celery.__main__:_compat_beat
+    - camqadm = celery.bin.camqadm:main
+    - celeryev = celery.bin.celeryev:main
+    - celeryctl = celery.bin.celeryctl:main
+    - celeryd-multi = celery.__main__:_compat_multi
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - billiard
+    - dateutil
+    - kombu
+
+  run:
+    - python
+    - billiard
+    - dateutil
+    - kombu
+
+test:
+  # Python imports
+  imports:
+    - celery
+
+  commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+    - celery --help
+    - celeryd --help
+    - celerybeat --help
+    - camqadm --help
+    - celeryev --help
+    - celeryctl --help
+    - celeryd-multi --help
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://celeryproject.org
+  license: BSD License
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
