@@ -1,0 +1,67 @@
+package:
+  name: webtest
+  version: 2.0.9
+
+source:
+  fn: WebTest-2.0.9.zip
+  url: https://pypi.python.org/packages/source/W/WebTest/WebTest-2.0.9.zip
+  md5: bf0a04fcf8b2cdcaa13b04324cefb53d
+#  patches:
+   # List any patch files here
+   # - fix.patch
+
+# build:
+  # entry_points:
+    # Put any entry points (scripts to be generated automatically) here. The
+    # syntax is module:function.  For example
+    #
+    # - webtest = webtest:main
+    #
+    # Would create an entry point called webtest that calls webtest.main()
+
+
+  # If this is a new build for the same version, increment the build
+  # number. If you do not include this key, it defaults to 0.
+  # number: 1
+
+requirements:
+  build:
+    - python
+    - distribute
+    - six
+    - webob
+    - waitress
+    - beautifulsoup4
+
+  run:
+    - python
+    - distribute
+    - six
+    - webob
+    - waitress
+    - beautifulsoup4
+
+test:
+  # Python imports
+  imports:
+    - webtest
+
+  # commands:
+    # You can put test commands to be run here.  Use this to test that the
+    # entry points work.
+
+
+  # You can also put a file called run_test.py in the recipe that will be run
+  # at test time.
+
+  # requires:
+    # Put any additional test requirements here.  For example
+    # - nose
+
+about:
+  home: http://webtest.pythonpaste.org/
+  license: MIT License
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
