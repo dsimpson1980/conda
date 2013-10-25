@@ -1,0 +1,35 @@
+
+diff --git setup.py setup.py
+index 853ce02..4e785e1 100644
+--- setup.py
++++ setup.py
+@@ -20,7 +20,25 @@
+ """
+ 
+ import os
+-from setuptools import setup, find_packages
++from fnmatch import fnmatchcase
++from distutils.core import setup
++from distutils.util import convert_path
++
++def find_packages(where='.', exclude=()):
++    out = []
++    stack=[(convert_path(where), '')]
++    while stack:
++        where, prefix = stack.pop(0)
++        for name in os.listdir(where):
++            fn = os.path.join(where,name)
++            if ('.' not in name and os.path.isdir(fn) and
++                os.path.isfile(os.path.join(fn, '__init__.py'))
++            ):
++                out.append(prefix+name)
++                stack.append((fn, prefix+name+'.'))
++    for pat in list(exclude) + ['ez_setup', 'distribute_setup']:
++        out = [item for item in out if not fnmatchcase(item, pat)]
++    return out
+ 
+ 
+ def read(*rnames):
+-- 
+1.7.12.4 (Apple Git-37)
+
